@@ -1,0 +1,53 @@
+# @package _group_
+name : "NYUMT"
+type: "NYUMTDataModule"
+meta_data:
+  in_resolution: [ 480, 640 ]
+  semseg:
+    num_classes : 40
+  single_task_results:
+    semseg:
+      mIoU: 0.4358
+    depth:
+      rmse: 0.5877
+task:
+  tasks: [ "semseg", "depth"]
+  aux_tasks: []
+model:
+  backbone:
+    type: "ResnetVanden"
+    pretrained: True  # 这里可以改成模型地址。
+  semseg:
+    head: "VandenHead"
+  depth:
+    head: "VandenHead"
+  normals:
+    head: "VandenHead"
+  edge:
+    head: "VandenHead"
+eval:
+  batch_size: 8
+  period: 1
+dataloader:
+  batch_size: 8
+  num_workers: 8
+  pin_memory: False
+  is_preload: True
+  on_server: False
+solver:
+  start_epoch: 1
+  max_epoch: 100
+  fix_encoder: False
+  optimizer:
+    type: 'ADAM'
+    base_lr: 1e-4
+    weight_decay: 1e-4
+sta_kwargs:
+  use_sta: False
+  is_overlap: True
+  subset_size: -1
+device: 'cuda'
+trainer: 'Vanden'
+cal_grad: False
+gpus: 1
+

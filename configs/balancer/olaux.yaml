@@ -1,0 +1,5 @@
+# @package _group_
+type: "OLAUX"
+lr: 5.  # In Xingyu-Lin/auxiliary-tasks-rl default settings is 5.
+N: 5
+constrained_weights: False

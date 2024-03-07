@@ -1,0 +1,5 @@
+# @package _group_
+type: "UWOrigin"
+optimizer: ${dataset.solver.optimizer.type}
+is_sum_loss: True
+lr: 0.025

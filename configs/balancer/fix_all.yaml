@@ -1,0 +1,3 @@
+# @package _group_
+type: "FixWeight"
+init_weight: [1.0, 0.2, 0.01]

@@ -1,0 +1,5 @@
+# @package _group_
+type: "MGDA"
+init_weight: 1.0
+is_approximate: False
+normalization_type: 'none'

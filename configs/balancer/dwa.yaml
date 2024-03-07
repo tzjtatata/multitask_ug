@@ -1,0 +1,4 @@
+# @package _group_
+type: "DWA"
+is_sum_loss: True
+T: 2

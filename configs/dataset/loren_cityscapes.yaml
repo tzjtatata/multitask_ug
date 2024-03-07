@@ -1,0 +1,60 @@
+# @package _group_
+name : "loren_cityscapes"
+type: "LorenCityscapes"
+meta_data:
+  in_resolution: [ 256, 256 ]
+  out_resolution: [32, 32]
+  semseg:
+    num_classes : 19
+  part_seg:
+    num_classes : 10
+  depth:
+    num_classes : 1
+  single_task_results:
+    semseg:
+      mIoU: 0.5620
+    depth:
+      abs_err: 0.84
+    part_seg:
+      mIoU: 0.5274
+task:
+  tasks: [ "semseg", "depth", "part_seg"]
+  aux_tasks: []
+model:
+  is_fix_head: False
+  backbone:
+    type: "ResnetVanden"
+    pretrained: False  # 这里可以改成模型地址。
+  semseg:
+    head: "VandenHead"
+  depth:
+    head: "VandenHead"
+  part_seg:
+    head: "VandenHead"
+eval:
+  batch_size: 4
+  period: 1
+dataloader:
+  batch_size: 4
+  num_workers: 4
+  pin_memory: False
+  is_preload: False
+  on_server: False
+solver:
+  start_epoch: 1
+  max_epoch: 200
+  fix_encoder: False
+  optimizer:
+    type: 'SGD'
+    base_lr: 0.1
+    weight_decay: 1e-4
+    momentum: 0.9
+sta_kwargs:
+  use_sta: False
+  is_overlap: True
+  subset_size: -1  # Default is -1
+device: 'cuda'
+trainer: 'Vanden'
+cal_grad: False
+gpus: 1
+

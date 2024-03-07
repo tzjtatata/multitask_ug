@@ -1,0 +1,3 @@
+# @package _group_
+type: "RLW"
+dist_type: "Bernoulli"  # "Bernoulli", "ConstraintBernoulli", "Uniform", "Normal", "Dirichlet", "RandomNormal"

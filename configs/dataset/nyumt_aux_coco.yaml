@@ -1,0 +1,67 @@
+# @package _group_
+name : "NYUMT"
+type: "NYUMTDataModule"
+meta_data:
+  in_resolution: [ 480, 640 ]
+  semseg:
+    num_classes : 40
+  city_semseg:
+    num_classes : 19
+  single_task_results:
+    semseg:
+      mIoU: 0.4358
+    depth:
+      rmse: 0.5877
+    normals:
+      mean: 19.49
+task:
+  tasks: [ "semseg"]
+  aux_tasks: ["depth", "normals", "coco_semseg"]
+inference_model:
+  # 后续把这里改成自动读取的
+  type: ["deeplabv3_coco"]
+  use_train_mode_to_inference: False
+model:
+  backbone:
+    type: "ResnetVanden"
+    pretrained: True  # 这里可以改成模型地址。
+  semseg:
+    head: "VandenHead"
+  city_semseg:
+    head: "VandenHead"
+  coco_semseg:
+    head: "VandenHead"
+  city_depth:
+    head: "VandenHead"
+  depth:
+    head: "VandenHead"
+  normals:
+    head: "VandenHead"
+  edge:
+    head: "VandenHead"
+eval:
+  batch_size: 8
+  period: 1
+dataloader:
+  batch_size: 8
+  num_workers: 8
+  pin_memory: False
+  is_preload: True
+  on_server: False
+solver:
+  start_epoch: 1
+  max_epoch: 100
+  fix_encoder: False
+  optimizer:
+    type: 'ADAM'
+    base_lr: 1e-4
+    weight_decay: 1e-4
+sta_kwargs:
+  use_sta: False
+  is_overlap: True
+  subset_size: -1  # Default is -1
+device: 'cuda'
+trainer: 'MuST'
+cal_grad: False
+gpus: 1
+

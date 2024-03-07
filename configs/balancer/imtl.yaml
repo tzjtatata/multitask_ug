@@ -1,0 +1,6 @@
+# @package _group_
+type : "ImpMTL"
+a: 2.72
+b: 1
+do_loss_balance: True
+do_grad_balance: True

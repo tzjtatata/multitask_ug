@@ -1,0 +1,5 @@
+# @package _group_
+type : "GradNorm"
+optimizer: ${dataset.solver.optimizer.type}
+lr: 0.025
+alpha : 1.5

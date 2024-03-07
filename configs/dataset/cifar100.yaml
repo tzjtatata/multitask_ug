@@ -1,0 +1,47 @@
+# @package _group_
+name : "cifar100"
+type: "CIFARDataModule"
+meta_data:
+  classpredict:
+    num_classes: 100
+task:
+  tasks: [ "CLASSPREDICT" ]
+model:
+  backbone:
+    type: "vgg16"
+    in_planes:
+      - 512
+    pretrained: False
+  classpredict:
+    head: "CPFC"
+  fpn_features: ['res5']
+eval:
+  batch_size: 128
+  period: 1
+dataloader:
+  data_ratio: 1.0
+  batch_size: 128
+  num_workers: 4
+  pin_memory: False
+  is_preload: True
+  on_server: False
+solver:
+  start_epoch: 1
+  max_epoch: 160
+  scheduler:
+    type: "MultiStep"
+    milestones: [ 80, 120 ]
+    gamma: 0.1
+  optimizer:
+    type: 'SGD'
+    base_lr: 0.1
+    weight_decay: 5e-4
+    nesterov: False
+    momentum: 0.9
+device: 'cuda'
+trainer: 'MT'
+cal_grad: False
+gpus: 1
+
+
+

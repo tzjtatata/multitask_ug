@@ -1,0 +1,3 @@
+# @package _group_
+type: "EqualWeight"
+init_weight: 1.0

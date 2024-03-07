@@ -1,0 +1,20 @@
+# @package _group_
+defaults:
+  - balancer : ew
+  - dataset : nyuv2
+seed : 0
+eval_only: False
+output_root: /data2
+ExpName: Default_Name
+is_resume: False
+hydra:
+  run:
+    dir: ${output_root}/outputs/${dataset.name}/${dataset.model.backbone.type}/${balancer.type}/${ExpName}/${hydra.job.name}_${now:%Y-%m-%d-%H-%M-%S}
+  sweep:
+    dir: ${hydra.run.dir}
+    subdir: ''
+  job:
+    config:
+      override_dirname:
+        exclude_keys: ['seed', 'balancer.type', 'dataset.name', 'backbone.type', 'output_root']
+  output_subdir: 'hydra'
