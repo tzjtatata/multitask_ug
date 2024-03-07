@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-# @Time : 2021/3/30 上午11:47
-# @Author : lyz
-# @Email : sqlyz@hit.edu.cn
-# @File : grad
-# @Project : multitask
 import torch
 
 

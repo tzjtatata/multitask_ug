@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-    @Time    : 2021/3/10 1:36 上午
-    @Author  : liyuanze
-    @Email   : sqlyz@hit.edu.cn
-    @File    : draw_function.py
-    @Software: PyCharm
-    @Comment :
-    Input function which give x and output y, output a figure which shows this function.
-"""
 import os
 from functools import partial
 from matplotlib import pyplot as plt
